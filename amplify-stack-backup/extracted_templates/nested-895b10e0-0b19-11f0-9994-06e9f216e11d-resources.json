@@ -1,0 +1,28 @@
+{
+    "StackResources": [
+        {
+            "StackName": "amplifylogs-stack-S3Resources-19RJBME4MGELE",
+            "StackId": "arn:aws:cloudformation:eu-west-1:182059100462:stack/amplifylogs-stack-S3Resources-19RJBME4MGELE/895b10e0-0b19-11f0-9994-06e9f216e11d",
+            "LogicalResourceId": "AmplifyLogsBucket",
+            "PhysicalResourceId": "amplifylogs-logging-intite-ss2-inftes-182059100462",
+            "ResourceType": "AWS::S3::Bucket",
+            "Timestamp": "2025-03-27T14:41:33.028000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+                "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+        },
+        {
+            "StackName": "amplifylogs-stack-S3Resources-19RJBME4MGELE",
+            "StackId": "arn:aws:cloudformation:eu-west-1:182059100462:stack/amplifylogs-stack-S3Resources-19RJBME4MGELE/895b10e0-0b19-11f0-9994-06e9f216e11d",
+            "LogicalResourceId": "AmplifyLogsBucketPolicy",
+            "PhysicalResourceId": "amplifylogs-logging-intite-ss2-inftes-182059100462",
+            "ResourceType": "AWS::S3::BucketPolicy",
+            "Timestamp": "2025-03-27T14:41:35.226000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+                "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+        }
+    ]
+}

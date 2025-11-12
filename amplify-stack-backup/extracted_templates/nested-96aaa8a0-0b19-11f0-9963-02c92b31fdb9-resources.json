@@ -1,0 +1,40 @@
+{
+    "StackResources": [
+        {
+            "StackName": "amplifylogs-stack-GlueResources-1X9509J6SKBOD",
+            "StackId": "arn:aws:cloudformation:eu-west-1:182059100462:stack/amplifylogs-stack-GlueResources-1X9509J6SKBOD/96aaa8a0-0b19-11f0-9963-02c92b31fdb9",
+            "LogicalResourceId": "AmplifyLogsCrawler",
+            "PhysicalResourceId": "amplifylogs-pipeline-intite-gl1-inftes-182059100462",
+            "ResourceType": "AWS::Glue::Crawler",
+            "Timestamp": "2025-03-27T14:42:02.120000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+                "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+        },
+        {
+            "StackName": "amplifylogs-stack-GlueResources-1X9509J6SKBOD",
+            "StackId": "arn:aws:cloudformation:eu-west-1:182059100462:stack/amplifylogs-stack-GlueResources-1X9509J6SKBOD/96aaa8a0-0b19-11f0-9963-02c92b31fdb9",
+            "LogicalResourceId": "AmplifyLogsDatabase",
+            "PhysicalResourceId": "amplifylogs-analysis-intite-gd1-inftes-182059100462",
+            "ResourceType": "AWS::Glue::Database",
+            "Timestamp": "2025-03-27T14:41:42.688000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+                "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+        },
+        {
+            "StackName": "amplifylogs-stack-GlueResources-1X9509J6SKBOD",
+            "StackId": "arn:aws:cloudformation:eu-west-1:182059100462:stack/amplifylogs-stack-GlueResources-1X9509J6SKBOD/96aaa8a0-0b19-11f0-9963-02c92b31fdb9",
+            "LogicalResourceId": "GlueCrawlerRole",
+            "PhysicalResourceId": "amplifylogs-pipeline-intite-ir1-inftes-182059100462-cf",
+            "ResourceType": "AWS::IAM::Role",
+            "Timestamp": "2025-03-27T14:41:59.257000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+                "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+        }
+    ]
+}

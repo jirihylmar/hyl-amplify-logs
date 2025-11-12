@@ -1,0 +1,127 @@
+=== File: local/config_loader.py ===
+=== Size: 5KB ===
+
+import json
+import os
+import logging
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Any, Optional, Union
+
+logger = logging.getLogger(__name__)
+
+class ConfigLoader:
+    """
+    Load and validate configuration for the Amplify logs project
+    """
+    
+    def __init__(self, config_path: Optional[str] = None, config_dict: Optional[Dict] = None):
+        """
+        Initialize the configuration loader
+        
+        Args:
+            config_path: Path to the configuration JSON file
+            config_dict: Configuration dictionary (alternative to config_path)
+        """
+        self.config = None
+        
+        if config_dict:
+            self.config = config_dict
+        elif config_path:
+            self._load_from_file(config_path)
+        else:
+            self._load_from_env()
+            
+        self._validate_config()
+    
+    def _load_from_file(self, config_path: str) -> None:
+        """Load configuration from a JSON file"""
+        try:
+            with open(config_path, 'r') as f:
+                self.config = json.load(f)
+            logger.info(f"Loaded configuration from {config_path}")
+        except (json.JSONDecodeError, FileNotFoundError) as e:
+            logger.error(f"Failed to load configuration from {config_path}: {str(e)}")
+            raise ValueError(f"Failed to load configuration: {str(e)}")
+    
+    def _load_from_env(self) -> None:
+        """Load configuration from environment variable"""
+        config_json = os.environ.get('CONFIG_JSON')
+        if config_json:
+            try:
+                self.config = json.loads(config_json)
+                logger.info("Loaded configuration from environment variable")
+            except json.JSONDecodeError as e:
+                logger.error(f"Failed to parse CONFIG_JSON environment variable: {str(e)}")
+                raise ValueError(f"Failed to parse configuration: {str(e)}")
+        else:
+            logger.error("No configuration found in CONFIG_JSON environment variable")
+            raise ValueError("No configuration provided")
+    
+    def _validate_config(self) -> None:
+        """Validate the configuration structure"""
+        if not self.config:
+            raise ValueError("Configuration is empty")
+        
+        # Check required top-level keys
+        required_keys = ['applications', 's3']
+        for key in required_keys:
+            if key not in self.config:
+                raise ValueError(f"Missing required configuration key: {key}")
+        
+        # Validate applications
+        if not isinstance(self.config['applications'], list) or len(self.config['applications']) == 0:
+            raise ValueError("Applications must be a non-empty list")
+        
+        for app in self.config['applications']:
+            required_app_keys = ['profile', 'region', 'appId', 'domainName', 'appName']
+            for key in required_app_keys:
+                if key not in app:
+                    raise ValueError(f"Application missing required key: {key}")
+        
+        # Validate S3 configuration
+        if 'bucket' not in self.config['s3']:
+            raise ValueError("S3 configuration missing required key: bucket")
+        
+        # Set default values for optional configuration
+        if 'timeChunkSize' not in self.config:
+            self.config['timeChunkSize'] = {'days': 14}
+        
+        logger.info("Configuration validation successful")
+    
+    def get_applications(self) -> List[Dict[str, str]]:
+        """Get list of configured applications"""
+        return self.config['applications']
+    
+    def get_s3_config(self) -> Dict[str, str]:
+        """Get S3 configuration"""
+        return self.config['s3']
+    
+    def get_time_chunk_size(self) -> int:
+        """Get time chunk size in days"""
+        return self.config['timeChunkSize']['days']
+    
+    def get_log_retention_days(self) -> int:
+        """Get log retention period in days"""
+        if 'logRetention' in self.config and 'days' in self.config['logRetention']:
+            return self.config['logRetention']['days']
+        return 365  # Default retention period
+    
+    def get_full_config(self) -> Dict[str, Any]:
+        """Get the complete configuration dictionary"""
+        return self.config
+
+
+def load_config(config_path: Optional[str] = None, 
+                config_dict: Optional[Dict] = None) -> ConfigLoader:
+    """
+    Load configuration from file or dictionary
+    
+    Args:
+        config_path: Path to configuration JSON file
+        config_dict: Configuration dictionary
+        
+    Returns:
+        ConfigLoader instance
+    """
+    return ConfigLoader(config_path, config_dict)

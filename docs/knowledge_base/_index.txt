@@ -1,0 +1,13 @@
+=== Knowledge Base File Index ===
+
+Generated on: Fri Mar 28 16:47:32 CET 2025
+Source path: /home/hylmarj/hyl-amplify-logs
+Files processed: 4
+Total size: 33 KB
+
+Size (KB) | Original Path -> Knowledge Base Filename
+------------------------------------------------
+0020 KB | local/action/amplify/download/logs.py -> local_action_amplify_download_logs.py_0020KB.txt
+0007 KB | local/README.md -> local_README.md_0007KB.txt
+0005 KB | local/config/loader.py -> local_config_loader.py_0005KB.txt
+0001 KB | local/config.json -> local_config.json_0001KB.txt

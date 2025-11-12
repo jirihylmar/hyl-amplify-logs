@@ -1,0 +1,102 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'AWS Amplify Logs - S3 Storage'
+
+Parameters:
+  Environment:
+    Type: String
+    Default: inftes
+    AllowedValues:
+      - infdev
+      - inftes
+      - infpro
+    Description: Environment (development, testing, production)
+  
+  AccountNumber:
+    Type: String
+    Default: '182059100462'
+    Description: AWS Account number
+  
+  LogRetentionDays:
+    Type: Number
+    Default: 365
+    Description: Number of days to retain logs
+
+  # Add parameter to control bucket creation
+  CreateNewBucket:
+    Type: String
+    Default: 'false'
+    AllowedValues:
+      - 'true'
+      - 'false'
+    Description: Whether to create a new S3 bucket or use existing bucket
+
+Conditions:
+  ShouldCreateBucket: !Equals [!Ref CreateNewBucket, 'true']
+
+Resources:
+  AmplifyLogsBucket:
+    Type: AWS::S3::Bucket
+    Condition: ShouldCreateBucket
+    Properties:
+      BucketName: !Sub 'amplifylogs-logging-intite-ss2-${Environment}-${AccountNumber}'
+      VersioningConfiguration:
+        Status: Enabled
+      LifecycleConfiguration:
+        Rules:
+          - Id: LogRetention
+            Status: Enabled
+            ExpirationInDays: !Ref LogRetentionDays
+            Prefix: 'type=amplify_logs/'
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      Tags:
+        - Key: Project
+          Value: amplifylogs
+        - Key: Owner
+          Value: HylmarJ
+        - Key: CostCenter
+          Value: cc-amplify-001
+        - Key: Environment
+          Value: !Ref Environment
+
+  AmplifyLogsBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Condition: ShouldCreateBucket
+    Properties:
+      Bucket: !Ref AmplifyLogsBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: DenyUnencryptedObjectUploads
+            Effect: Deny
+            Principal: '*'
+            Action: 's3:PutObject'
+            Resource: !Sub '${AmplifyLogsBucket.Arn}/*'
+            Condition:
+              StringNotEquals:
+                's3:x-amz-server-side-encryption': 'AES256'
+          - Sid: DenyInsecureConnections
+            Effect: Deny
+            Principal: '*'
+            Action: 's3:*'
+            Resource: !Sub '${AmplifyLogsBucket.Arn}/*'
+            Condition:
+              Bool:
+                'aws:SecureTransport': 'false'
+
+Outputs:
+  BucketName:
+    Description: Name of the S3 bucket for Amplify logs
+    Value: !If 
+      - ShouldCreateBucket
+      - !Ref AmplifyLogsBucket
+      - !Sub 'amplifylogs-logging-intite-ss2-${Environment}-${AccountNumber}'
+  
+  BucketArn:
+    Description: ARN of the S3 bucket
+    Value: !If 
+      - ShouldCreateBucket
+      - !GetAtt AmplifyLogsBucket.Arn
+      - !Sub 'arn:aws:s3:::amplifylogs-logging-intite-ss2-${Environment}-${AccountNumber}'

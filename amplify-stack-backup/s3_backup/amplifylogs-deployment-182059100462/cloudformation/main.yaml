@@ -1,0 +1,288 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'AWS Amplify Logs - Complete Infrastructure'
+
+Parameters:
+  Environment:
+    Type: String
+    Default: inftes
+    AllowedValues:
+      - infdev
+      - inftes
+      - infpro
+    Description: Environment (development, testing, production)
+  
+  AccountNumber:
+    Type: String
+    Default: '182059100462'
+    Description: AWS Account number
+  
+  LogRetentionDays:
+    Type: Number
+    Default: 365
+    Description: Number of days to retain logs
+    
+  # Parameter to control bucket creation
+  CreateNewS3Bucket:
+    Type: String
+    Default: 'false'
+    AllowedValues:
+      - 'true'
+      - 'false'
+    Description: Whether to create a new S3 bucket or use an existing one
+
+Resources:
+  # S3 Storage
+  S3Resources:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: 'https://amplifylogs-deployment-182059100462.s3.amazonaws.com/cloudformation/s3.yaml'
+      Parameters:
+        Environment: !Ref Environment
+        AccountNumber: !Ref AccountNumber
+        LogRetentionDays: !Ref LogRetentionDays
+        CreateNewBucket: !Ref CreateNewS3Bucket
+      Tags:
+        - Key: Project
+          Value: amplifylogs
+        - Key: Owner
+          Value: HylmarJ
+        - Key: CostCenter
+          Value: cc-amplify-001
+        - Key: Environment
+          Value: !Ref Environment
+
+  # Lambda IAM Roles - Make names unique with suffixes
+  LogDownloaderRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub 'amplifylogs-logging-intite-ir1-${Environment}-${AccountNumber}-cf'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+      Policies:
+        - PolicyName: AmplifyAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'amplify:GenerateAccessLogs'
+                Resource: '*'
+        - PolicyName: S3Access
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 's3:PutObject'
+                  - 's3:GetObject'
+                  - 's3:ListBucket'
+                Resource:
+                  - !GetAtt S3Resources.Outputs.BucketArn
+                  - !Sub '${S3Resources.Outputs.BucketArn}/*'
+      Tags:
+        - Key: Project
+          Value: amplifylogs
+        - Key: Owner
+          Value: HylmarJ
+        - Key: CostCenter
+          Value: cc-amplify-001
+        - Key: Environment
+          Value: !Ref Environment
+
+  CrawlerTriggerRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub 'amplifylogs-pipeline-intite-ir2-${Environment}-${AccountNumber}-cf'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+      Policies:
+        - PolicyName: GlueAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'glue:StartCrawler'
+                  - 'glue:GetCrawler'
+                Resource: '*'
+      Tags:
+        - Key: Project
+          Value: amplifylogs
+        - Key: Owner
+          Value: HylmarJ
+        - Key: CostCenter
+          Value: cc-amplify-001
+        - Key: Environment
+          Value: !Ref Environment
+
+  CalculateTimeRangesRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub 'amplifylogs-orchestration-intite-ir3-${Environment}-${AccountNumber}-cf'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+      Tags:
+        - Key: Project
+          Value: amplifylogs
+        - Key: Owner
+          Value: HylmarJ
+        - Key: CostCenter
+          Value: cc-amplify-001
+        - Key: Environment
+          Value: !Ref Environment
+
+  # Lambda Functions
+  LogDownloaderLambda:
+    Type: AWS::Lambda::Function
+    DependsOn: S3Resources
+    Properties:
+      FunctionName: !Sub 'amplifylogs-logging-intite-lm1-${Environment}-${AccountNumber}-cf'
+      Handler: lambda_function.lambda_handler
+      Role: !GetAtt LogDownloaderRole.Arn
+      Code:
+        S3Bucket: !Sub 'amplifylogs-deployment-${AccountNumber}'
+        S3Key: 'lambda/log_downloader_lambda.zip'
+      Runtime: python3.9
+      Timeout: 900
+      MemorySize: 1024
+      Tags:
+        - Key: Project
+          Value: amplifylogs
+        - Key: Owner
+          Value: HylmarJ
+        - Key: CostCenter
+          Value: cc-amplify-001
+        - Key: Environment
+          Value: !Ref Environment
+
+  # Glue Resources - Must come after S3 is created
+  GlueResources:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: S3Resources
+    Properties:
+      TemplateURL: 'https://amplifylogs-deployment-182059100462.s3.amazonaws.com/cloudformation/crawler.yaml'
+      Parameters:
+        Environment: !Ref Environment
+        AccountNumber: !Ref AccountNumber
+        BucketName: !GetAtt S3Resources.Outputs.BucketName
+      Tags:
+        - Key: Project
+          Value: amplifylogs
+        - Key: Owner
+          Value: HylmarJ
+        - Key: CostCenter
+          Value: cc-amplify-001
+        - Key: Environment
+          Value: !Ref Environment
+
+  CrawlerTriggerLambda:
+    Type: AWS::Lambda::Function
+    DependsOn: GlueResources
+    Properties:
+      FunctionName: !Sub 'amplifylogs-pipeline-intite-lm1-${Environment}-${AccountNumber}-cf'
+      Handler: lambda_function.lambda_handler
+      Role: !GetAtt CrawlerTriggerRole.Arn
+      Code:
+        S3Bucket: !Sub 'amplifylogs-deployment-${AccountNumber}'
+        S3Key: 'lambda/crawler_trigger_lambda.zip'
+      Runtime: python3.9
+      Timeout: 60
+      MemorySize: 128
+      Environment:
+        Variables:
+          CRAWLER_NAME: !GetAtt GlueResources.Outputs.CrawlerName
+      Tags:
+        - Key: Project
+          Value: amplifylogs
+        - Key: Owner
+          Value: HylmarJ
+        - Key: CostCenter
+          Value: cc-amplify-001
+        - Key: Environment
+          Value: !Ref Environment
+
+  CalculateTimeRangesLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub 'amplifylogs-orchestration-intite-lm2-${Environment}-${AccountNumber}-cf'
+      Handler: lambda_function.lambda_handler
+      Role: !GetAtt CalculateTimeRangesRole.Arn
+      Code:
+        S3Bucket: !Sub 'amplifylogs-deployment-${AccountNumber}'
+        S3Key: 'lambda/calculate_time_ranges_lambda.zip'
+      Runtime: python3.9
+      Timeout: 60
+      MemorySize: 128
+      Tags:
+        - Key: Project
+          Value: amplifylogs
+        - Key: Owner
+          Value: HylmarJ
+        - Key: CostCenter
+          Value: cc-amplify-001
+        - Key: Environment
+          Value: !Ref Environment
+
+  # Step Functions
+  StepFunctionsResources:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: 
+      - LogDownloaderLambda
+      - CrawlerTriggerLambda
+      - CalculateTimeRangesLambda
+      - GlueResources
+    Properties:
+      TemplateURL: 'https://amplifylogs-deployment-182059100462.s3.amazonaws.com/cloudformation/step-functions.yaml'
+      Parameters:
+        Environment: !Ref Environment
+        AccountNumber: !Ref AccountNumber
+        LogDownloaderLambdaName: !Ref LogDownloaderLambda
+        CrawlerTriggerLambdaName: !Ref CrawlerTriggerLambda
+        CalculateTimeRangesLambdaName: !Ref CalculateTimeRangesLambda
+      Tags:
+        - Key: Project
+          Value: amplifylogs
+        - Key: Owner
+          Value: HylmarJ
+        - Key: CostCenter
+          Value: cc-amplify-001
+        - Key: Environment
+          Value: !Ref Environment
+
+Outputs:
+  BucketName:
+    Description: S3 Bucket for Amplify logs
+    Value: !GetAtt S3Resources.Outputs.BucketName
+  
+  DatabaseName:
+    Description: Glue Database name
+    Value: !GetAtt GlueResources.Outputs.DatabaseName
+  
+  CrawlerName:
+    Description: Glue Crawler name
+    Value: !GetAtt GlueResources.Outputs.CrawlerName
+  
+  StateMachineArn:
+    Description: Step Functions State Machine ARN
+    Value: !GetAtt StepFunctionsResources.Outputs.StateMachineArn

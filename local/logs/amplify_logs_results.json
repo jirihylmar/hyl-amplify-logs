@@ -1,0 +1,20 @@
+{
+  "overall_stats": {
+    "total_chunks": 4,
+    "successful_chunks": 4,
+    "failed_chunks": 0,
+    "empty_logs_chunks": 2,
+    "upload_failures": 0,
+    "failed_ranges": []
+  },
+  "app_results": [
+    {
+      "app_name": "aps-goldsport-booking",
+      "total_chunks": 4,
+      "successful_chunks": 4,
+      "empty_logs_chunks": 2,
+      "failed_chunks": 0,
+      "failed_ranges": []
+    }
+  ]
+}

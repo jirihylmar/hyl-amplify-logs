@@ -1,0 +1,45 @@
+{
+    "Role": {
+        "Path": "/",
+        "RoleName": "amplifylogs-logging-intite-ir1-inftes-182059100462-cf",
+        "RoleId": "AROASUY4RNEXP73WF3IMR",
+        "Arn": "arn:aws:iam::182059100462:role/amplifylogs-logging-intite-ir1-inftes-182059100462-cf",
+        "CreateDate": "2025-03-27T14:41:40+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "lambda.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        },
+        "Description": "",
+        "MaxSessionDuration": 3600,
+        "Tags": [
+            {
+                "Key": "Project",
+                "Value": "amplifylogs"
+            },
+            {
+                "Key": "Environment",
+                "Value": "inftes"
+            },
+            {
+                "Key": "Owner",
+                "Value": "HylmarJ"
+            },
+            {
+                "Key": "CostCenter",
+                "Value": "cc-amplify-001"
+            }
+        ],
+        "RoleLastUsed": {
+            "LastUsedDate": "2025-03-28T10:19:20+00:00",
+            "Region": "eu-west-1"
+        }
+    }
+}

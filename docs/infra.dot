@@ -1,0 +1,37 @@
+digraph INFRA {
+  node [ color = "black", fillcolor = "#E6E6E6", height =1, style = "filled,bold,rounded", fontname = "Arial" ];
+  "AmplifyLogsBucket" [ label = "AmplifyLogsBucket
+(AWS::S3::Bucket)", shape =cylinder, fillcolor = "#FFF5CD" ];
+  "LogDownloaderRole" [ label = "LogDownloaderRole
+(AWS::IAM::Role)", shape =rectangle ];
+  "CrawlerTriggerRole" [ label = "CrawlerTriggerRole
+(AWS::IAM::Role)", shape =rectangle ];
+  "CalculateTimeRangesRole" [ label = "CalculateTimeRangesRole
+(AWS::IAM::Role)", shape =rectangle ];
+  "LogDownloaderLambda" [ label = "LogDownloaderLambda
+(AWS::Lambda::Function)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "CrawlerTriggerLambda" [ label = "CrawlerTriggerLambda
+(AWS::Lambda::Function)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "CalculateTimeRangesLambda" [ label = "CalculateTimeRangesLambda
+(AWS::Lambda::Function)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "AmplifyLogsDatabase" [ label = "AmplifyLogsDatabase
+(AWS::Glue::Database)", shape =cylinder, fillcolor = "#FFCFB3" ];
+  "AmplifyLogsCrawler" [ label = "AmplifyLogsCrawler
+(AWS::Glue::Crawler)", shape =rectangle ];
+  "AmplifyLogsStateMachineRole" [ label = "AmplifyLogsStateMachineRole
+(AWS::IAM::Role)", shape =rectangle ];
+  "AmplifyLogsStateMachine" [ label = "AmplifyLogsStateMachine
+(AWS::StepFunctions::StateMachine)" ];
+  "LogDownloaderRole" -> "AmplifyLogsBucket";
+  "LogDownloaderLambda" -> "LogDownloaderRole";
+  "LogDownloaderLambda" -> "AmplifyLogsBucket";
+  "CrawlerTriggerLambda" -> "CrawlerTriggerRole";
+  "CrawlerTriggerLambda" -> "AmplifyLogsCrawler";
+  "CalculateTimeRangesLambda" -> "CalculateTimeRangesRole";
+  "AmplifyLogsCrawler" -> "AmplifyLogsDatabase";
+  "AmplifyLogsCrawler" -> "AmplifyLogsBucket";
+  "AmplifyLogsStateMachine" -> "AmplifyLogsStateMachineRole";
+  "AmplifyLogsStateMachine" -> "CalculateTimeRangesLambda";
+  "AmplifyLogsStateMachine" -> "LogDownloaderLambda";
+  "AmplifyLogsStateMachine" -> "CrawlerTriggerLambda";
+}

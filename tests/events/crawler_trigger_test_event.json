@@ -1,0 +1,13 @@
+{
+	"statusCode": 200,
+	"body": {
+	  "app": "danse_tech",
+	  "timeRange": {
+		"startTime": "2023-10-01T00:00:00",
+		"endTime": "2023-10-14T23:59:59"
+	  },
+	  "uploadedFiles": [
+		"type=amplify_logs/app=danse_tech/date_export=2023-10-01/log_20231001_000000"
+	  ]
+	}
+  }

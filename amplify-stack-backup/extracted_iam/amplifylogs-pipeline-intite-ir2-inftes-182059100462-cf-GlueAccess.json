@@ -1,0 +1,17 @@
+{
+    "RoleName": "amplifylogs-pipeline-intite-ir2-inftes-182059100462-cf",
+    "PolicyName": "GlueAccess",
+    "PolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Action": [
+                    "glue:StartCrawler",
+                    "glue:GetCrawler"
+                ],
+                "Resource": "*",
+                "Effect": "Allow"
+            }
+        ]
+    }
+}

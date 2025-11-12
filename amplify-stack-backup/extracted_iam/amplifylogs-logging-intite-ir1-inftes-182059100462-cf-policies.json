@@ -1,0 +1,6 @@
+{
+    "PolicyNames": [
+        "AmplifyAccess",
+        "S3Access"
+    ]
+}

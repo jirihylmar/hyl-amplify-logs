@@ -1,0 +1,7 @@
+2025-03-28 10:33:48       3159 cloudformation/crawler.yaml
+2025-03-28 10:33:48       8689 cloudformation/main.yaml
+2025-03-28 10:33:48       2848 cloudformation/s3.yaml
+2025-03-28 10:33:48       5759 cloudformation/step-functions.yaml
+2025-03-27 15:40:28       1118 lambda/calculate_time_ranges_lambda.zip
+2025-03-27 15:40:27       2028 lambda/crawler_trigger_lambda.zip
+2025-03-27 15:40:26       3696 lambda/log_downloader_lambda.zip

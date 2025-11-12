@@ -1,0 +1,101 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'AWS Amplify Logs - Glue Crawler'
+
+Parameters:
+  Environment:
+    Type: String
+    Default: inftes
+    AllowedValues:
+      - infdev
+      - inftes
+      - infpro
+    Description: Environment (development, testing, production)
+  
+  AccountNumber:
+    Type: String
+    Default: '182059100462'
+    Description: AWS Account number
+  
+  BucketName:
+    Type: String
+    Default: amplifylogs-logging-intite-ss2-inftes-182059100462
+    Description: S3 bucket containing Amplify logs
+
+Resources:
+  GlueCrawlerRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub 'amplifylogs-pipeline-intite-ir1-${Environment}-${AccountNumber}-cf'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: glue.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole'
+      Policies:
+        - PolicyName: S3Access
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 's3:GetObject'
+                  - 's3:ListBucket'
+                Resource:
+                  - !Sub 'arn:aws:s3:::${BucketName}'
+                  - !Sub 'arn:aws:s3:::${BucketName}/*'
+      Tags:
+        - Key: Project
+          Value: amplifylogs
+        - Key: Owner
+          Value: HylmarJ
+        - Key: CostCenter
+          Value: cc-amplify-001
+        - Key: Environment
+          Value: !Ref Environment
+
+  AmplifyLogsDatabase:
+    Type: AWS::Glue::Database
+    Properties:
+      CatalogId: !Ref AWS::AccountId
+      DatabaseInput:
+        Name: !Sub 'amplifylogs-analysis-intite-gd1-${Environment}-${AccountNumber}'
+        Description: 'Database for Amplify logs analysis'
+
+  AmplifyLogsCrawler:
+    Type: AWS::Glue::Crawler
+    DependsOn: GlueCrawlerRole
+    Properties:
+      Name: !Sub 'amplifylogs-pipeline-intite-gl1-${Environment}-${AccountNumber}'
+      Role: !GetAtt GlueCrawlerRole.Arn
+      DatabaseName: !Ref AmplifyLogsDatabase
+      Targets:
+        S3Targets:
+          - Path: !Sub 's3://${BucketName}/type=amplify_logs/'
+            # Added exclusions to handle case where the bucket might exist but the path doesn't yet
+            Exclusions:
+              - "**/_temporary/**"
+      SchemaChangePolicy:
+        UpdateBehavior: 'UPDATE_IN_DATABASE'
+        DeleteBehavior: 'LOG'
+      Configuration: '{"Version": 1.0, "CrawlerOutput": {"Partitions": {"AddOrUpdateBehavior": "InheritFromTable"}}, "Grouping": {"TableGroupingPolicy": "CombineCompatibleSchemas"}}'
+      RecrawlPolicy:
+        RecrawlBehavior: 'CRAWL_EVERYTHING'
+      # Removing the schedule so it's only triggered by the Lambda
+      Tags:
+        Project: amplifylogs
+        Owner: HylmarJ
+        CostCenter: cc-amplify-001
+        Environment: !Ref Environment
+
+Outputs:
+  DatabaseName:
+    Description: Name of the Glue database
+    Value: !Ref AmplifyLogsDatabase
+  
+  CrawlerName:
+    Description: Name of the Glue crawler
+    Value: !Ref AmplifyLogsCrawler

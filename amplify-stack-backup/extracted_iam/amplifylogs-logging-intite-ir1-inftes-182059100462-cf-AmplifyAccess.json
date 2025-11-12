@@ -1,0 +1,16 @@
+{
+    "RoleName": "amplifylogs-logging-intite-ir1-inftes-182059100462-cf",
+    "PolicyName": "AmplifyAccess",
+    "PolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Action": [
+                    "amplify:GenerateAccessLogs"
+                ],
+                "Resource": "*",
+                "Effect": "Allow"
+            }
+        ]
+    }
+}

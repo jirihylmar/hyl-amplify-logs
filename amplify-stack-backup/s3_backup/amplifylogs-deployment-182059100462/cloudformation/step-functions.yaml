@@ -1,0 +1,161 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'AWS Amplify Logs - Step Functions Workflow'
+
+Parameters:
+  Environment:
+    Type: String
+    Default: inftes
+    AllowedValues:
+      - infdev
+      - inftes
+      - infpro
+    Description: Environment (development, testing, production)
+  
+  AccountNumber:
+    Type: String
+    Default: '182059100462'
+    Description: AWS Account number
+  
+  LogDownloaderLambdaName:
+    Type: String
+    Default: amplifylogs-logging-intite-lm1-inftes-182059100462-cf
+    Description: Name of the Log Downloader Lambda function
+  
+  CrawlerTriggerLambdaName:
+    Type: String
+    Default: amplifylogs-pipeline-intite-lm1-inftes-182059100462-cf
+    Description: Name of the Crawler Trigger Lambda function
+  
+  CalculateTimeRangesLambdaName:
+    Type: String
+    Default: amplifylogs-orchestration-intite-lm2-inftes-182059100462-cf
+    Description: Name of the Calculate Time Ranges Lambda function
+
+Resources:
+  AmplifyLogsStateMachineRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub 'amplifylogs-orchestration-intite-ir1-${Environment}-${AccountNumber}-cf'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: states.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaRole'
+      Tags:
+        - Key: Project
+          Value: amplifylogs
+        - Key: Owner
+          Value: HylmarJ
+        - Key: CostCenter
+          Value: cc-amplify-001
+        - Key: Environment
+          Value: !Ref Environment
+
+  AmplifyLogsStateMachine:
+    Type: AWS::StepFunctions::StateMachine
+    Properties:
+      StateMachineName: !Sub 'amplifylogs-orchestration-intite-sf1-${Environment}-${AccountNumber}-cf'
+      RoleArn: !GetAtt AmplifyLogsStateMachineRole.Arn
+      Definition:
+        Comment: "AWS Amplify Logs Workflow"
+        StartAt: "CalculateTimeRanges"
+        States:
+          CalculateTimeRanges:
+            Type: "Task"
+            Resource: !Sub 'arn:aws:lambda:${AWS::Region}:${AccountNumber}:function:${CalculateTimeRangesLambdaName}'
+            Comment: "Calculate time ranges based on chunk size"
+            ResultPath: "$.timeRanges"
+            Retry:
+              - ErrorEquals: ["States.ALL"]
+                IntervalSeconds: 1
+                MaxAttempts: 3
+                BackoffRate: 2
+            Catch:
+              - ErrorEquals: ["States.ALL"]
+                ResultPath: "$.error"
+                Next: "WorkflowFailed"
+            Next: "ProcessApplications"
+          ProcessApplications:
+            Type: "Map"
+            Comment: "Process each application"
+            ItemsPath: "$.config.applications"
+            Parameters:
+              app.$: "$$.Map.Item.Value"
+              s3.$: "$.config.s3"
+              timeRanges.$: "$.timeRanges"
+            Iterator:
+              StartAt: "ProcessTimeChunks"
+              States:
+                ProcessTimeChunks:
+                  Type: "Map"
+                  Comment: "Process each time chunk for this application"
+                  ItemsPath: "$.timeRanges"
+                  Parameters:
+                    app.$: "$.app"
+                    s3.$: "$.s3"
+                    timeRange.$: "$$.Map.Item.Value"
+                  Iterator:
+                    StartAt: "DownloadLogs"
+                    States:
+                      DownloadLogs:
+                        Type: "Task"
+                        Resource: !Sub 'arn:aws:lambda:${AWS::Region}:${AccountNumber}:function:${LogDownloaderLambdaName}'
+                        Comment: "Download logs for this app and time range"
+                        Retry:
+                          - ErrorEquals: ["States.TaskFailed"]
+                            IntervalSeconds: 60
+                            MaxAttempts: 3
+                            BackoffRate: 2
+                        Catch:
+                          - ErrorEquals: ["States.ALL"]
+                            ResultPath: "$.error"
+                            Next: "ChunkFailed"
+                        End: true
+                      ChunkFailed:
+                        Type: "Pass"
+                        Comment: "Record failure for this chunk"
+                        End: true
+                  End: true
+            ResultPath: "$.processResults"
+            Next: "TriggerCrawler"
+          TriggerCrawler:
+            Type: "Task"
+            Resource: !Sub 'arn:aws:lambda:${AWS::Region}:${AccountNumber}:function:${CrawlerTriggerLambdaName}'
+            Comment: "Trigger Glue Crawler after all downloads are complete"
+            Retry:
+              - ErrorEquals: ["States.ALL"]
+                IntervalSeconds: 60
+                MaxAttempts: 3
+                BackoffRate: 2
+            Catch:
+              - ErrorEquals: ["States.ALL"]
+                ResultPath: "$.error"
+                Next: "WorkflowFailed"
+            Next: "WorkflowSucceeded"
+          WorkflowSucceeded:
+            Type: "Succeed"
+          WorkflowFailed:
+            Type: "Fail"
+            Error: "WorkflowFailed"
+            Cause: "One or more steps failed. Check the execution details."
+      Tags:
+        - Key: Project
+          Value: amplifylogs
+        - Key: Owner
+          Value: HylmarJ
+        - Key: CostCenter
+          Value: cc-amplify-001
+        - Key: Environment
+          Value: !Ref Environment
+
+  # Instead of creating an EventBridge rule directly, we're just going to output
+  # the StateMachine ARN, then we can create the rule manually or in a separate template
+
+Outputs:
+  StateMachineArn:
+    Description: ARN of the Step Functions State Machine
+    Value: !Ref AmplifyLogsStateMachine

@@ -1,0 +1,23 @@
+{
+	"config": {
+	  "applications": [
+		{
+		  "profile": "HylmarJ",
+		  "region": "eu-west-1",
+		  "appId": "d3hgg9jtwyuijn",
+		  "domainName": "danse.tech",
+		  "appName": "danse_tech"
+		}
+	  ],
+	  "s3": {
+		"bucket": "amplifylogs-logging-intite-ss1-inftes-182059100462",
+		"prefix": ""
+	  },
+	  "timeChunkSize": {
+		"days": 14
+	  },
+	  "logRetention": {
+		"days": 30
+	  }
+	}
+  }

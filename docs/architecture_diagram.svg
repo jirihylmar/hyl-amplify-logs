@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
+  <!-- Background -->
+  <rect width="1000" height="600" fill="#f9f9f9"/>
+  
+  <!-- Title -->
+  <text x="500" y="40" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle">AWS Amplify Logs Architecture</text>
+  
+  <!-- AWS Cloud Border -->
+  <rect x="50" y="70" width="900" height="480" fill="#f2f7ff" stroke="#232f3e" stroke-width="2" rx="10" ry="10"/>
+  <text x="100" y="100" font-family="Arial" font-size="18" font-weight="bold">AWS Cloud</text>
+  
+  <!-- EventBridge -->
+  <rect x="100" y="140" width="120" height="60" fill="#e7e7e7" stroke="#232f3e" stroke-width="2" rx="5" ry="5"/>
+  <text x="160" y="175" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">EventBridge</text>
+  <text x="160" y="195" font-family="Arial" font-size="12" text-anchor="middle">Weekly Schedule</text>
+  
+  <!-- Step Functions -->
+  <rect x="300" y="140" width="400" height="120" fill="#d2e9ff" stroke="#232f3e" stroke-width="2" rx="5" ry="5"/>
+  <text x="500" y="160" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">Step Functions Workflow</text>
+  
+  <!-- Step Functions States -->
+  <rect x="320" y="180" width="80" height="40" fill="#aed9ff" stroke="#232f3e" stroke-width="1" rx="3" ry="3"/>
+  <text x="360" y="205" font-family="Arial" font-size="10" text-anchor="middle">Calculate</text>
+  <text x="360" y="215" font-family="Arial" font-size="10" text-anchor="middle">Time Ranges</text>
+  
+  <rect x="420" y="180" width="80" height="40" fill="#aed9ff" stroke="#232f3e" stroke-width="1" rx="3" ry="3"/>
+  <text x="460" y="205" font-family="Arial" font-size="10" text-anchor="middle">Process</text>
+  <text x="460" y="215" font-family="Arial" font-size="10" text-anchor="middle">Applications</text>
+  
+  <rect x="520" y="180" width="80" height="40" fill="#aed9ff" stroke="#232f3e" stroke-width="1" rx="3" ry="3"/>
+  <text x="560" y="205" font-family="Arial" font-size="10" text-anchor="middle">Process</text>
+  <text x="560" y="215" font-family="Arial" font-size="10" text-anchor="middle">Time Chunks</text>
+  
+  <rect x="620" y="180" width="60" height="40" fill="#aed9ff" stroke="#232f3e" stroke-width="1" rx="3" ry="3"/>
+  <text x="650" y="205" font-family="Arial" font-size="10" text-anchor="middle">Trigger</text>
+  <text x="650" y="215" font-family="Arial" font-size="10" text-anchor="middle">Crawler</text>
+  
+  <!-- Lambda Functions -->
+  <rect x="200" y="320" width="120" height="60" fill="#ffb67f" stroke="#232f3e" stroke-width="2" rx="5" ry="5"/>
+  <text x="260" y="350" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Calculate</text>
+  <text x="260" y="365" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Time Ranges</text>
+  <text x="260" y="380" font-family="Arial" font-size="10" text-anchor="middle">Lambda</text>
+  
+  <rect x="400" y="320" width="120" height="60" fill="#ffb67f" stroke="#232f3e" stroke-width="2" rx="5" ry="5"/>
+  <text x="460" y="350" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Log</text>
+  <text x="460" y="365" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Downloader</text>
+  <text x="460" y="380" font-family="Arial" font-size="10" text-anchor="middle">Lambda</text>
+  
+  <rect x="600" y="320" width="120" height="60" fill="#ffb67f" stroke="#232f3e" stroke-width="2" rx="5" ry="5"/>
+  <text x="660" y="350" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Crawler</text>
+  <text x="660" y="365" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Trigger</text>
+  <text x="660" y="380" font-family="Arial" font-size="10" text-anchor="middle">Lambda</text>
+  
+  <!-- S3 Bucket -->
+  <path d="M400,460 l40,-20 l120,0 l40,20 l-40,20 l-120,0 z" fill="#8dc3e8" stroke="#232f3e" stroke-width="2"/>
+  <text x="500" y="470" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">S3 Bucket</text>
+  <text x="500" y="485" font-family="Arial" font-size="12" text-anchor="middle">Log Storage</text>
+  
+  <!-- Glue Resources -->
+  <rect x="700" y="440" width="120" height="60" fill="#d8c1f4" stroke="#232f3e" stroke-width="2" rx="5" ry="5"/>
+  <text x="760" y="470" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Glue Crawler</text>
+  <text x="760" y="485" font-family="Arial" font-size="12" text-anchor="middle">Schema Updates</text>
+  
+  <!-- Athena -->
+  <rect x="800" y="320" width="120" height="60" fill="#c1f4de" stroke="#232f3e" stroke-width="2" rx="5" ry="5"/>
+  <text x="860" y="350" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Athena</text>
+  <text x="860" y="365" font-family="Arial" font-size="12" text-anchor="middle">SQL Queries</text>
+  
+  <!-- Glue Database -->
+  <rect x="800" y="440" width="120" height="60" fill="#d8c1f4" stroke="#232f3e" stroke-width="2" rx="5" ry="5"/>
+  <text x="860" y="470" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Glue Database</text>
+  <text x="860" y="485" font-family="Arial" font-size="12" text-anchor="middle">Data Catalog</text>
+  
+  <!-- Connection Lines -->
+  <!-- EventBridge to Step Functions -->
+  <line x1="220" y1="170" x2="300" y2="170" stroke="#232f3e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step Functions to Lambda -->
+  <line x1="360" y1="220" x2="260" y2="320" stroke="#232f3e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="460" y1="220" x2="460" y2="320" stroke="#232f3e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="560" y1="220" x2="460" y2="320" stroke="#232f3e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="650" y1="220" x2="660" y2="320" stroke="#232f3e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Lambda to S3 -->
+  <line x1="460" y1="380" x2="500" y2="440" stroke="#232f3e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- S3 to Glue Crawler -->
+  <line x1="540" y1="470" x2="700" y2="470" stroke="#232f3e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Lambda to Glue Crawler -->
+  <line x1="720" y1="380" x2="750" y2="440" stroke="#232f3e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Glue Crawler to Glue Database -->
+  <line x1="820" y1="470" x2="800" y2="470" stroke="#232f3e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Glue Database to Athena -->
+  <line x1="860" y1="440" x2="860" y2="380" stroke="#232f3e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Arrow Marker Definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#232f3e"/>
+    </marker>
+  </defs>
+  
+  <!-- Legend -->
+  <rect x="100" y="520" width="800" height="20" fill="none" stroke="none"/>
+  <rect x="110" y="520" width="15" height="15" fill="#e7e7e7" stroke="#232f3e" stroke-width="1"/>
+  <text x="135" y="532" font-family="Arial" font-size="12">EventBridge</text>
+  
+  <rect x="210" y="520" width="15" height="15" fill="#d2e9ff" stroke="#232f3e" stroke-width="1"/>
+  <text x="235" y="532" font-family="Arial" font-size="12">Step Functions</text>
+  
+  <rect x="330" y="520" width="15" height="15" fill="#ffb67f" stroke="#232f3e" stroke-width="1"/>
+  <text x="355" y="532" font-family="Arial" font-size="12">Lambda</text>
+  
+  <path d="M440,520 l5,-5 l15,0 l5,5 l-5,5 l-15,0 z" fill="#8dc3e8" stroke="#232f3e" stroke-width="1"/>
+  <text x="475" y="532" font-family="Arial" font-size="12">S3</text>
+  
+  <rect x="520" y="520" width="15" height="15" fill="#d8c1f4" stroke="#232f3e" stroke-width="1"/>
+  <text x="545" y="532" font-family="Arial" font-size="12">Glue</text>
+  
+  <rect x="610" y="520" width="15" height="15" fill="#c1f4de" stroke="#232f3e" stroke-width="1"/>
+  <text x="635" y="532" font-family="Arial" font-size="12">Athena</text>
+</svg>

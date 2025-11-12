@@ -1,0 +1,44 @@
+{
+    "Code": {
+        "RepositoryType": "S3",
+        "Location": "https://awslambda-eu-west-1-tasks.s3.eu-west-1.amazonaws.com/snapshots/182059100462/amplifylogs-logging-intite-lm1-inftes-182059100462-cf-432bdcee-077a-4b45-b45c-da8e3a4f0de0?versionId=mydUAeQ9dJl54JGL7HTxB_V_N9N9vZLt&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEO3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJGMEQCIGBlHqtVPF%2BFa%2BzVJahWS2IA9ogZrqCmnL8tHXslQt1iAiB5hEGKdXYj1vU5CapcEqNTw6cCPGh2f61%2Bt8JE6ARh%2FSqJAghVEAQaDDk1NDM2OTA4MjUxMSIMrmmTisOMZMvJJoYiKuYBFE8uX00qxEs7t5nARzi3bhRFCa5358JjnhOU9lwnvruiHyJAfAbXSi8dpT8W84YNuJCaEFQWkPK%2FM21FbPwThAbWYB%2FN6mxLq0J5XRd8zb92xXBoph5MPcAO71hLfzirWkQYXOmf3lp6nuUpQAJw4p%2Bvm3lkoyuYd7bZa93Nj8upqgl7Pg66JhJz2yDoFze9SvoNMvQFeo6ugB96YkXr6yMvzngYjgQ%2BF1%2FchMhvKPzLTw5EnpaAVSRJ%2FObwFr46M4WbLas0exR9jsZNA67dPYaF%2BqG9nOlhxwJoiZDLMKBlqvphB6AwsceYvwY6kAGBe7c9GSCTgSc1jkoTxnxwZyLc3ToXFz0N214G%2BAh5UMomTLi%2BNxG4FDbfJaTSg8J5OSFX5csTa3e%2BC89En9Y2GwlwbMXaZJp304NbfhG6NFr1630BAdTnsnulNKr4xGCfp0j3TF9X9N3uO8jMYvzoYp5SoK3HvVWDh7kmyIkiqc4ViZQJOQlldtgOKUXuFC8%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250328T121135Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIA54NGUQSHWJFDNDQW%2F20250328%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Signature=a655a6ce0840cc7e591c7d0fb12025f7439e7b44a7299240f3cf128520baf7f8"
+    },
+    "Configuration": {
+        "FunctionName": "amplifylogs-logging-intite-lm1-inftes-182059100462-cf",
+        "FunctionArn": "arn:aws:lambda:eu-west-1:182059100462:function:amplifylogs-logging-intite-lm1-inftes-182059100462-cf",
+        "Runtime": "python3.9",
+        "Role": "arn:aws:iam::182059100462:role/amplifylogs-logging-intite-ir1-inftes-182059100462-cf",
+        "Handler": "lambda_function.lambda_handler",
+        "CodeSize": 954991,
+        "Description": "",
+        "Timeout": 900,
+        "MemorySize": 1024,
+        "LastModified": "2025-03-27T15:21:40.000+0000",
+        "CodeSha256": "awam5JnyfFMrFcrBZ9XdT5DY/UPgs5DCkoWAAnZe4Y8=",
+        "Version": "$LATEST",
+        "TracingConfig": {
+            "Mode": "PassThrough"
+        },
+        "RevisionId": "9858e717-4d44-46c2-a482-20332961f4f9",
+        "State": "Active",
+        "LastUpdateStatus": "Successful",
+        "PackageType": "Zip",
+        "Architectures": [
+            "x86_64"
+        ],
+        "EphemeralStorage": {
+            "Size": 512
+        },
+        "SnapStart": {
+            "ApplyOn": "None",
+            "OptimizationStatus": "Off"
+        },
+        "RuntimeVersionConfig": {
+            "RuntimeVersionArn": "arn:aws:lambda:eu-west-1::runtime:d6dc717114b06da7d4b5a2df328222709ec4fad2853004fac301b8b63a65c084"
+        },
+        "LoggingConfig": {
+            "LogFormat": "Text",
+            "LogGroup": "/aws/lambda/amplifylogs-logging-intite-lm1-inftes-182059100462-cf"
+        }
+    }
+}

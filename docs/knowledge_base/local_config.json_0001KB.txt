@@ -1,0 +1,36 @@
+=== File: local/config.json ===
+=== Size: 1KB ===
+
+{
+	"applications": [
+	  {
+		"profile": "HylmarJ",
+		"region": "eu-west-1",
+		"appId": "d3hgg9jtwyuijn",
+		"domainName": "danse.tech",
+		"appName": "danse_tech"
+	  },
+	  {
+		"profile": "JiHy__vsb__299",
+		"region": "eu-central-1",
+		"appId": "dziu0wvy5r9bx",
+		"domainName": "main.dziu0wvy5r9bx.amplifyapp.com",
+		"appName": "digital_horizon"
+	  }
+	],
+	"s3": {
+	  "bucket": "amplifylogs-logging-intite-ss1-inftes-182059100462",
+	  "prefix": ""
+	},
+	"schedule": {
+	  "frequency": "weekly",
+	  "dayOfWeek": "Monday",
+	  "timeOfDay": "01:00"
+	},
+	"logRetention": {
+	  "days": 365
+	},
+	"timeChunkSize": {
+	  "days": 14
+	}
+  }

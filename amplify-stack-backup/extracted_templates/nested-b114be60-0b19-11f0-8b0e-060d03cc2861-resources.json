@@ -1,0 +1,28 @@
+{
+    "StackResources": [
+        {
+            "StackName": "amplifylogs-stack-StepFunctionsResources-1A3FL500GA300",
+            "StackId": "arn:aws:cloudformation:eu-west-1:182059100462:stack/amplifylogs-stack-StepFunctionsResources-1A3FL500GA300/b114be60-0b19-11f0-8b0e-060d03cc2861",
+            "LogicalResourceId": "AmplifyLogsStateMachine",
+            "PhysicalResourceId": "arn:aws:states:eu-west-1:182059100462:stateMachine:amplifylogs-orchestration-intite-sf1-inftes-182059100462-cf",
+            "ResourceType": "AWS::StepFunctions::StateMachine",
+            "Timestamp": "2025-03-27T14:42:45.106000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+                "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+        },
+        {
+            "StackName": "amplifylogs-stack-StepFunctionsResources-1A3FL500GA300",
+            "StackId": "arn:aws:cloudformation:eu-west-1:182059100462:stack/amplifylogs-stack-StepFunctionsResources-1A3FL500GA300/b114be60-0b19-11f0-8b0e-060d03cc2861",
+            "LogicalResourceId": "AmplifyLogsStateMachineRole",
+            "PhysicalResourceId": "amplifylogs-orchestration-intite-ir1-inftes-182059100462-cf",
+            "ResourceType": "AWS::IAM::Role",
+            "Timestamp": "2025-03-27T14:42:42.718000+00:00",
+            "ResourceStatus": "CREATE_COMPLETE",
+            "DriftInformation": {
+                "StackResourceDriftStatus": "NOT_CHECKED"
+            }
+        }
+    ]
+}

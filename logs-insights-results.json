@@ -1,0 +1,457 @@
+[
+    {
+        "LogLevel": "INFO",
+        "DocumentId": "s3://digitalhorizon-intite-ss0-infdev-299025166536/type=data_course_master/language=en/course_lessons__en.json",
+        "DocumentTitle": "course_lessons__en.json",
+        "CrawlAction": "UPDATE",
+        "ConnectorDocumentStatus": "SUCCESS",
+        "ErrorMsg": "",
+        "CrawlStatus": "SUCCESS",
+        "SyncStatus": "SUCCESS",
+        "IndexStatus": "SUCCESS",
+        "SourceUri": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Den/course_lessons__en.json",
+        "Acl": "",
+        "Metadata": [
+            {
+                "key": "_source_uri",
+                "value": {
+                    "stringValue": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Den/course_lessons__en.json"
+                }
+            },
+            {
+                "key": "_created_at",
+                "value": {
+                    "dateValue": "Apr 6, 2025, 6:25:42 PM"
+                }
+            },
+            {
+                "key": "s3_document_id",
+                "value": {
+                    "stringValue": "course_lessons__en.json"
+                }
+            }
+        ],
+        "HashedDocumentId": "2f49102ce0facc0b1d3e2d0488ceef538c6b41fcaa54320c562e3bc197f802eba71ec8db0b62c13e5dd0e137221e1272f885b8e08bbdeb19dcaa99121cef4527",
+        "@timestamp": "2025-04-06 19:12:03.545"
+    },
+    {
+        "LogLevel": "INFO",
+        "DocumentId": "s3://digitalhorizon-intite-ss0-infdev-299025166536/type=data_course_master/language=cs/course_organizations__cs.json",
+        "DocumentTitle": "course_organizations__cs.json",
+        "CrawlAction": "UPDATE",
+        "ConnectorDocumentStatus": "SUCCESS",
+        "ErrorMsg": "",
+        "CrawlStatus": "SUCCESS",
+        "SyncStatus": "SUCCESS",
+        "IndexStatus": "SUCCESS",
+        "SourceUri": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Dcs/course_organizations__cs.json",
+        "Acl": "",
+        "Metadata": [
+            {
+                "key": "_source_uri",
+                "value": {
+                    "stringValue": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Dcs/course_organizations__cs.json"
+                }
+            },
+            {
+                "key": "_created_at",
+                "value": {
+                    "dateValue": "Apr 6, 2025, 6:49:45 PM"
+                }
+            },
+            {
+                "key": "s3_document_id",
+                "value": {
+                    "stringValue": "course_organizations__cs.json"
+                }
+            }
+        ],
+        "HashedDocumentId": "cd2d85c1db3f04f3f43237d75090836bfb6cab54836b2bad4de880067be075bbe9c89ac55f64ab3d9f8117d7c2121de1c36347ba03e0cd47f0b275f2ccf26528",
+        "@timestamp": "2025-04-06 19:11:59.248"
+    },
+    {
+        "LogLevel": "INFO",
+        "DocumentId": "s3://digitalhorizon-intite-ss0-infdev-299025166536/type=data_course_master/language=cs/footer__cs.json",
+        "DocumentTitle": "footer__cs.json",
+        "CrawlAction": "UPDATE",
+        "ConnectorDocumentStatus": "SUCCESS",
+        "ErrorMsg": "",
+        "CrawlStatus": "SUCCESS",
+        "SyncStatus": "SUCCESS",
+        "IndexStatus": "SUCCESS",
+        "SourceUri": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Dcs/footer__cs.json",
+        "Acl": "",
+        "Metadata": [
+            {
+                "key": "_source_uri",
+                "value": {
+                    "stringValue": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Dcs/footer__cs.json"
+                }
+            },
+            {
+                "key": "_created_at",
+                "value": {
+                    "dateValue": "Apr 6, 2025, 6:49:45 PM"
+                }
+            },
+            {
+                "key": "s3_document_id",
+                "value": {
+                    "stringValue": "footer__cs.json"
+                }
+            }
+        ],
+        "HashedDocumentId": "a0c92dc8d77c564753771e1c7a193aecf272f13d8a9655f2acd4d36e2e63b574f1c1a03e6fb87248b8870c723667515c3471395aeebd9c6043b69346b5ec8635",
+        "@timestamp": "2025-04-06 19:11:59.248"
+    },
+    {
+        "LogLevel": "INFO",
+        "DocumentId": "s3://digitalhorizon-intite-ss0-infdev-299025166536/type=instructions/theme=course_offer/design=single_structured_ouput/instructions__course_offer__single_structured_ouput.md",
+        "DocumentTitle": "instructions__course_offer__single_structured_ouput.md",
+        "CrawlAction": "UPDATE",
+        "ConnectorDocumentStatus": "SUCCESS",
+        "ErrorMsg": "",
+        "CrawlStatus": "SUCCESS",
+        "SyncStatus": "SUCCESS",
+        "IndexStatus": "SUCCESS",
+        "SourceUri": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Dinstructions/theme%3Dcourse_offer/design%3Dsingle_structured_ouput/instructions__course_offer__single_structured_ouput.md",
+        "Acl": "",
+        "Metadata": [
+            {
+                "key": "_source_uri",
+                "value": {
+                    "stringValue": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Dinstructions/theme%3Dcourse_offer/design%3Dsingle_structured_ouput/instructions__course_offer__single_structured_ouput.md"
+                }
+            },
+            {
+                "key": "_created_at",
+                "value": {
+                    "dateValue": "Apr 6, 2025, 6:49:52 PM"
+                }
+            },
+            {
+                "key": "s3_document_id",
+                "value": {
+                    "stringValue": "instructions__course_offer__single_structured_ouput.md"
+                }
+            }
+        ],
+        "HashedDocumentId": "957bf6624104faacf78fba9ad2af5d4bee6d24b513cfdcd5a1e935e8776837688f0e71d7d42d86adf393216eb414bc72fd3889b40444318daedcef65e8c571f5",
+        "@timestamp": "2025-04-06 19:11:58.108"
+    },
+    {
+        "LogLevel": "INFO",
+        "DocumentId": "s3://digitalhorizon-intite-ss0-infdev-299025166536/type=data_course_master/language=en/course_organizations__en.json",
+        "DocumentTitle": "course_organizations__en.json",
+        "CrawlAction": "UPDATE",
+        "ConnectorDocumentStatus": "SUCCESS",
+        "ErrorMsg": "",
+        "CrawlStatus": "SUCCESS",
+        "SyncStatus": "SUCCESS",
+        "IndexStatus": "SUCCESS",
+        "SourceUri": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Den/course_organizations__en.json",
+        "Acl": "",
+        "Metadata": [
+            {
+                "key": "_source_uri",
+                "value": {
+                    "stringValue": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Den/course_organizations__en.json"
+                }
+            },
+            {
+                "key": "_created_at",
+                "value": {
+                    "dateValue": "Apr 6, 2025, 6:49:45 PM"
+                }
+            },
+            {
+                "key": "s3_document_id",
+                "value": {
+                    "stringValue": "course_organizations__en.json"
+                }
+            }
+        ],
+        "HashedDocumentId": "2a6d0cc9842d9cfb350e8536ace284300b52199837f96bccb0ce2eeabf341443d1c8ddd007357ab4270566ca291b473460ae8579847ee2b495f79e1a5a27fa7a",
+        "@timestamp": "2025-04-06 19:11:57.723"
+    },
+    {
+        "LogLevel": "INFO",
+        "DocumentId": "s3://digitalhorizon-intite-ss0-infdev-299025166536/type=data_course_master/language=en/course_about__en.json",
+        "DocumentTitle": "course_about__en.json",
+        "CrawlAction": "UPDATE",
+        "ConnectorDocumentStatus": "SUCCESS",
+        "ErrorMsg": "",
+        "CrawlStatus": "SUCCESS",
+        "SyncStatus": "SUCCESS",
+        "IndexStatus": "SUCCESS",
+        "SourceUri": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Den/course_about__en.json",
+        "Acl": "",
+        "Metadata": [
+            {
+                "key": "_source_uri",
+                "value": {
+                    "stringValue": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Den/course_about__en.json"
+                }
+            },
+            {
+                "key": "_created_at",
+                "value": {
+                    "dateValue": "Apr 6, 2025, 6:25:42 PM"
+                }
+            },
+            {
+                "key": "s3_document_id",
+                "value": {
+                    "stringValue": "course_about__en.json"
+                }
+            }
+        ],
+        "HashedDocumentId": "59f7af079654c55ab576076c52317d8e240d6babf48ee04da7564b6e2b48974c485144401d405d8181bbe348ba4f32a7726b03c4a4a96e7fe053a2e33c556e6b",
+        "@timestamp": "2025-04-06 19:11:56.760"
+    },
+    {
+        "LogLevel": "INFO",
+        "DocumentId": "s3://digitalhorizon-intite-ss0-infdev-299025166536/type=data_course_master/language=cs/course_modules__cs.json",
+        "DocumentTitle": "course_modules__cs.json",
+        "CrawlAction": "UPDATE",
+        "ConnectorDocumentStatus": "SUCCESS",
+        "ErrorMsg": "",
+        "CrawlStatus": "SUCCESS",
+        "SyncStatus": "SUCCESS",
+        "IndexStatus": "SUCCESS",
+        "SourceUri": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Dcs/course_modules__cs.json",
+        "Acl": "",
+        "Metadata": [
+            {
+                "key": "_source_uri",
+                "value": {
+                    "stringValue": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Dcs/course_modules__cs.json"
+                }
+            },
+            {
+                "key": "_created_at",
+                "value": {
+                    "dateValue": "Apr 6, 2025, 6:49:45 PM"
+                }
+            },
+            {
+                "key": "s3_document_id",
+                "value": {
+                    "stringValue": "course_modules__cs.json"
+                }
+            }
+        ],
+        "HashedDocumentId": "645aabc9514b56b6d13fbafb3fbd46b5ff98413f7342fee2a6c513dc4e7a98db7484f22047e0a6e7692981232f31ab50e9597f926f154dd1f82ddd56da06011e",
+        "@timestamp": "2025-04-06 19:11:55.309"
+    },
+    {
+        "LogLevel": "INFO",
+        "DocumentId": "s3://digitalhorizon-intite-ss0-infdev-299025166536/type=data_course_master/language=en/course_modules__en.json",
+        "DocumentTitle": "course_modules__en.json",
+        "CrawlAction": "UPDATE",
+        "ConnectorDocumentStatus": "SUCCESS",
+        "ErrorMsg": "",
+        "CrawlStatus": "SUCCESS",
+        "SyncStatus": "SUCCESS",
+        "IndexStatus": "SUCCESS",
+        "SourceUri": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Den/course_modules__en.json",
+        "Acl": "",
+        "Metadata": [
+            {
+                "key": "_source_uri",
+                "value": {
+                    "stringValue": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Den/course_modules__en.json"
+                }
+            },
+            {
+                "key": "_created_at",
+                "value": {
+                    "dateValue": "Apr 6, 2025, 6:49:45 PM"
+                }
+            },
+            {
+                "key": "s3_document_id",
+                "value": {
+                    "stringValue": "course_modules__en.json"
+                }
+            }
+        ],
+        "HashedDocumentId": "4f40613e60afa573904ce5e6d1099a60c2e5eb44d2bcf58ffead9f37f0f23f794eac50b8bcc2c455b1095a3731463d4b64c22047cc3f56f53ab1e4cfaeaaad4f",
+        "@timestamp": "2025-04-06 19:11:55.042"
+    },
+    {
+        "LogLevel": "INFO",
+        "DocumentId": "s3://digitalhorizon-intite-ss0-infdev-299025166536/type=data_course_master/language=cs/course_lessons__cs.json",
+        "DocumentTitle": "course_lessons__cs.json",
+        "CrawlAction": "UPDATE",
+        "ConnectorDocumentStatus": "SUCCESS",
+        "ErrorMsg": "",
+        "CrawlStatus": "SUCCESS",
+        "SyncStatus": "SUCCESS",
+        "IndexStatus": "SUCCESS",
+        "SourceUri": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Dcs/course_lessons__cs.json",
+        "Acl": "",
+        "Metadata": [
+            {
+                "key": "_source_uri",
+                "value": {
+                    "stringValue": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Dcs/course_lessons__cs.json"
+                }
+            },
+            {
+                "key": "_created_at",
+                "value": {
+                    "dateValue": "Apr 6, 2025, 6:25:42 PM"
+                }
+            },
+            {
+                "key": "s3_document_id",
+                "value": {
+                    "stringValue": "course_lessons__cs.json"
+                }
+            }
+        ],
+        "HashedDocumentId": "82873c8bde2680a9e2728c57bad25cc95824edf4f325192baff65ffe5138d3078aada5dc472c1859762745314c1034b18f56a20c9398e7f950c39309c5c03c8e",
+        "@timestamp": "2025-04-06 19:11:53.668"
+    },
+    {
+        "LogLevel": "INFO",
+        "DocumentId": "s3://digitalhorizon-intite-ss0-infdev-299025166536/type=data_course_master/language=en/footer__en.json",
+        "DocumentTitle": "footer__en.json",
+        "CrawlAction": "UPDATE",
+        "ConnectorDocumentStatus": "SUCCESS",
+        "ErrorMsg": "",
+        "CrawlStatus": "SUCCESS",
+        "SyncStatus": "SUCCESS",
+        "IndexStatus": "SUCCESS",
+        "SourceUri": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Den/footer__en.json",
+        "Acl": "",
+        "Metadata": [
+            {
+                "key": "_source_uri",
+                "value": {
+                    "stringValue": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Den/footer__en.json"
+                }
+            },
+            {
+                "key": "_created_at",
+                "value": {
+                    "dateValue": "Apr 6, 2025, 6:49:45 PM"
+                }
+            },
+            {
+                "key": "s3_document_id",
+                "value": {
+                    "stringValue": "footer__en.json"
+                }
+            }
+        ],
+        "HashedDocumentId": "85c7433dcaa83dc7bfe7ba45048fc24d333516af604ffc2ab35b7c543f9c68ee6665c8a47a5a350e3d52fa3d43ab7fcf9a85987d3a54d79d5a9a7ab24a975bc2",
+        "@timestamp": "2025-04-06 19:11:53.425"
+    },
+    {
+        "LogLevel": "INFO",
+        "DocumentId": "s3://digitalhorizon-intite-ss0-infdev-299025166536/type=data_course_master/language=cs/course_people__cs.json",
+        "DocumentTitle": "course_people__cs.json",
+        "CrawlAction": "UPDATE",
+        "ConnectorDocumentStatus": "SUCCESS",
+        "ErrorMsg": "",
+        "CrawlStatus": "SUCCESS",
+        "SyncStatus": "SUCCESS",
+        "IndexStatus": "SUCCESS",
+        "SourceUri": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Dcs/course_people__cs.json",
+        "Acl": "",
+        "Metadata": [
+            {
+                "key": "_source_uri",
+                "value": {
+                    "stringValue": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Dcs/course_people__cs.json"
+                }
+            },
+            {
+                "key": "_created_at",
+                "value": {
+                    "dateValue": "Apr 6, 2025, 6:49:45 PM"
+                }
+            },
+            {
+                "key": "s3_document_id",
+                "value": {
+                    "stringValue": "course_people__cs.json"
+                }
+            }
+        ],
+        "HashedDocumentId": "f629c6da60f747578300cc6225d38204b7b33039882b8d419946313388ce0d1e4f741e57ec706868478f1f341eee4fe0ca2e0ba29a772fd6f070892c3bcd8def",
+        "@timestamp": "2025-04-06 19:11:53.035"
+    },
+    {
+        "LogLevel": "INFO",
+        "DocumentId": "s3://digitalhorizon-intite-ss0-infdev-299025166536/type=data_course_master/language=en/course_people__en.json",
+        "DocumentTitle": "course_people__en.json",
+        "CrawlAction": "UPDATE",
+        "ConnectorDocumentStatus": "SUCCESS",
+        "ErrorMsg": "",
+        "CrawlStatus": "SUCCESS",
+        "SyncStatus": "SUCCESS",
+        "IndexStatus": "SUCCESS",
+        "SourceUri": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Den/course_people__en.json",
+        "Acl": "",
+        "Metadata": [
+            {
+                "key": "_source_uri",
+                "value": {
+                    "stringValue": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Den/course_people__en.json"
+                }
+            },
+            {
+                "key": "_created_at",
+                "value": {
+                    "dateValue": "Apr 6, 2025, 6:49:45 PM"
+                }
+            },
+            {
+                "key": "s3_document_id",
+                "value": {
+                    "stringValue": "course_people__en.json"
+                }
+            }
+        ],
+        "HashedDocumentId": "6d866e786146b19ada0813081de737cec16e3acaa39b4d21718e9aab37f1736f653014f5c0430f687ae0d477487d2481d3dcf3d4ef1f7534dd6ab1a7c9e3aef2",
+        "@timestamp": "2025-04-06 19:11:51.387"
+    },
+    {
+        "LogLevel": "INFO",
+        "DocumentId": "s3://digitalhorizon-intite-ss0-infdev-299025166536/type=data_course_master/language=cs/course_about__cs.json",
+        "DocumentTitle": "course_about__cs.json",
+        "CrawlAction": "UPDATE",
+        "ConnectorDocumentStatus": "SUCCESS",
+        "ErrorMsg": "",
+        "CrawlStatus": "SUCCESS",
+        "SyncStatus": "SUCCESS",
+        "IndexStatus": "SUCCESS",
+        "SourceUri": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Dcs/course_about__cs.json",
+        "Acl": "",
+        "Metadata": [
+            {
+                "key": "_source_uri",
+                "value": {
+                    "stringValue": "https://digitalhorizon-intite-ss0-infdev-299025166536.s3.eu-west-1.amazonaws.com/type%3Ddata_course_master/language%3Dcs/course_about__cs.json"
+                }
+            },
+            {
+                "key": "_created_at",
+                "value": {
+                    "dateValue": "Apr 6, 2025, 6:25:42 PM"
+                }
+            },
+            {
+                "key": "s3_document_id",
+                "value": {
+                    "stringValue": "course_about__cs.json"
+                }
+            }
+        ],
+        "HashedDocumentId": "5f923fcbd5adf564df4ac6b184bdecc1fd5de274eb8b31dc026b6e54fd199307036e798387a840517c5eeb2bde2238c89535544d524861a18d1bfe1d92f6d180",
+        "@timestamp": "2025-04-06 19:11:50.255"
+    }
+]
